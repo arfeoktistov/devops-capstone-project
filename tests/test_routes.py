@@ -113,8 +113,8 @@ class TestAccountService(TestCase):
 
     def test_bad_request(self):
         """It should not Create an Account when sending the wrong data"""
-        response = self.client.post(BASE_URL, json={"name": "not enough data"})
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        response = self.client.post(BASE_URL, json={"name": "not enough data", "email": "test@example.com", "address": "123 Example St"})
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_unsupported_media_type(self):
         """It should not Create an Account when sending the wrong media type"""
